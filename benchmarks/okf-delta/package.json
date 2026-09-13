@@ -8,6 +8,7 @@
     "audit:conflicts": "node src/external-cli.mjs audit-conflicts --arm-profile fair-v1 --out runs/conflicts-fair-dataset-audit.json",
     "audit:conflicts:legacy": "node src/external-cli.mjs audit-conflicts --arm-profile legacy-v1 --out runs/conflicts-dataset-audit.json",
     "figures:report": "node scripts/render-report-figures.mjs",
+    "figures:interim": "node scripts/render-interim-figures.mjs",
     "compile:conflicts": "node src/external-cli.mjs compile --benchmark conflicts",
     "validate:formal": "node src/external-cli.mjs validate-formal",
     "smoke:conflicts": "node src/external-cli.mjs run --benchmark conflicts --runner mock --sample-size 10 --sample-seed okf-external-v1 --out runs/conflicts-smoke.jsonl",

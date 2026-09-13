@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "status": "incomplete; aggregate retained from analyzer output; raw rows unavailable locally",
+  "snapshot": {
+    "last_recorded_at_utc": "2026-09-13T07:06:26.253Z",
+    "planned_items": 458,
+    "planned_calls": 916,
+    "paired_items": 223,
+    "effective_calls": 446,
+    "recorded_attempts": 448,
+    "infrastructure_error_attempts": 2,
+    "successful_retries": 2
+  },
+  "provenance": {
+    "raw_jsonl_sha256_recorded_before_loss": "16dcb3ae13337a861a6e0f681e4e5c197b6fa33f9a99ec71f8a91f982625a464",
+    "raw_jsonl_available": false,
+    "benchmark_revision": "81ba921dd684a93db41a7e9dda6b6a7c67348a88",
+    "code_revision": "81625879b6ebff54ef95c7cb9460b86304830227",
+    "preregistration_id": "okf-conflicts-encoding-ni-v1",
+    "preregistration_sha256": "92e382f4f13679484148a2916bdaff91ddc0466541dae15b60bebc5877e093e5",
+    "runner": "codex",
+    "model": "gpt-5.6-sol"
+  },
+  "arms": {
+    "p": {
+      "description": "same source metadata rendered as labeled prose",
+      "correct": 134,
+      "n": 223,
+      "accuracy": 0.600896860986547,
+      "accuracy_wilson_95": [0.5354374444251151, 0.6629389909670151],
+      "macro_f1_reported": 0.492,
+      "invalid": 0,
+      "mean_prompt_characters": 17414.529147982063,
+      "mean_latency_ms": 16536.730941704034,
+      "median_latency_ms": 16290,
+      "p95_latency_ms": 24204
+    },
+    "s": {
+      "description": "same source metadata rendered as structured OKF fields",
+      "correct": 134,
+      "n": 223,
+      "accuracy": 0.600896860986547,
+      "accuracy_wilson_95": [0.5354374444251151, 0.6629389909670151],
+      "macro_f1_reported": 0.489,
+      "invalid": 0,
+      "mean_prompt_characters": 17202.448430493274,
+      "mean_latency_ms": 16653.044843049327,
+      "median_latency_ms": 15814,
+      "p95_latency_ms": 25551
+    }
+  },
+  "paired_outcomes": {
+    "both_correct": 126,
+    "both_wrong": 81,
+    "s_only_correct": 8,
+    "p_only_correct": 8
+  },
+  "descriptive_contrast": {
+    "s_minus_p_accuracy_pp": 0,
+    "paired_bootstrap_95_pp": [-3.6, 3.6],
+    "bootstrap_resamples": 100000,
+    "bootstrap_seed": "okf-conflicts-ni-bootstrap-v1",
+    "exact_mcnemar_p": 1,
+    "frozen_noninferiority_margin_pp": -5,
+    "confirmatory_decision": "INCOMPLETE — no confirmatory decision"
+  },
+  "labels": [
+    {"name": "No conflict", "interim_n": 86, "full_n": 161, "p_correct": 42, "s_correct": 41},
+    {"name": "Complementary information", "interim_n": 66, "full_n": 115, "p_correct": 43, "s_correct": 45},
+    {"name": "Conflicting opinions and research outcomes", "interim_n": 39, "full_n": 115, "p_correct": 32, "s_correct": 32},
+    {"name": "Conflict due to outdated information", "interim_n": 30, "full_n": 62, "p_correct": 17, "s_correct": 16},
+    {"name": "Conflict due to misinformation", "interim_n": 2, "full_n": 5, "p_correct": 0, "s_correct": 0}
+  ]
+}
