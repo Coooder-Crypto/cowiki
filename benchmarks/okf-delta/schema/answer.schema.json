@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["answer", "selected_document", "source_ids", "abstain", "reason"],
+  "properties": {
+    "answer": { "type": "string" },
+    "selected_document": { "type": "string" },
+    "source_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "abstain": { "type": "boolean" },
+    "reason": { "type": "string" }
+  }
+}

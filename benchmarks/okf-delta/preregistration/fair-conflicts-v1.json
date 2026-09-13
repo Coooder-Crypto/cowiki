@@ -1,0 +1,50 @@
+{
+  "id": "okf-conflicts-encoding-ni-v1",
+  "frozen_at": "2026-09-13T12:07:51+08:00",
+  "status": "frozen-before-confirmatory-run",
+  "analysis_version": "fair-conflicts-ni-v1",
+  "benchmark": "conflicts",
+  "benchmark_revision": "81ba921dd684a93db41a7e9dda6b6a7c67348a88",
+  "population": "all-458-items",
+  "expected_items": 458,
+  "ndoc": 10,
+  "arm_profile": "fair-v1",
+  "primary_arms": [
+    "s",
+    "p"
+  ],
+  "primary_contrast": "s-p",
+  "primary_outcome": "exact-label-correctness",
+  "estimand": "mean paired correctness difference over the locked 458-item split",
+  "hypothesis": {
+    "type": "non-inferiority",
+    "margin_percentage_points": -5,
+    "alpha_one_sided": 0.025,
+    "success_rule": "lower endpoint of the prespecified 95% item-paired bootstrap interval is greater than -5 percentage points"
+  },
+  "interval": {
+    "method": "item-paired-percentile-bootstrap",
+    "iterations": 100000,
+    "seed": "okf-conflicts-ni-bootstrap-v1",
+    "cluster": "item",
+    "confidence": 0.95
+  },
+  "runner": "codex",
+  "model": "gpt-5.6-sol",
+  "prompt_template": "conflicts-classification-v1",
+  "repetitions": 1,
+  "sample_seed": "okf-conflicts-fair-v1",
+  "failure_policy": "one infrastructure retry before analysis; remaining timeout, refusal, parse error, or invalid label counts as incorrect",
+  "secondary_outcomes": [
+    "macro-f1",
+    "per-label-recall",
+    "invalid-rate",
+    "prompt-characters",
+    "prompt-utf8-bytes",
+    "latency-ms"
+  ],
+  "exploratory_arms": [
+    "n",
+    "ps"
+  ]
+}

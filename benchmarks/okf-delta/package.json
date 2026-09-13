@@ -1,0 +1,19 @@
+{
+  "name": "okf-delta-bench",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "compile": "node src/cli.mjs compile",
+    "fetch:conflicts": "node src/external-cli.mjs fetch --source conflicts",
+    "audit:conflicts": "node src/external-cli.mjs audit-conflicts --arm-profile fair-v1 --out runs/conflicts-fair-dataset-audit.json",
+    "audit:conflicts:legacy": "node src/external-cli.mjs audit-conflicts --arm-profile legacy-v1 --out runs/conflicts-dataset-audit.json",
+    "figures:report": "node scripts/render-report-figures.mjs",
+    "compile:conflicts": "node src/external-cli.mjs compile --benchmark conflicts",
+    "validate:formal": "node src/external-cli.mjs validate-formal",
+    "smoke:conflicts": "node src/external-cli.mjs run --benchmark conflicts --runner mock --sample-size 10 --sample-seed okf-external-v1 --out runs/conflicts-smoke.jsonl",
+    "report:conflicts": "node src/external-cli.mjs analyze-conflicts runs/conflicts-smoke.jsonl --out runs/conflicts-smoke-report.md",
+    "smoke": "node src/cli.mjs run --runner mock --model deterministic-mock --reps 1 --out runs/smoke.jsonl",
+    "report:smoke": "node src/cli.mjs analyze runs/smoke.jsonl --out runs/smoke-report.md",
+    "test": "node --test tests/*.test.mjs"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "sources": {
+    "conflicts": {
+      "name": "CONFLICTS",
+      "paper": "https://arxiv.org/abs/2506.08500",
+      "repository": "https://github.com/google-research-datasets/rag_conflicts",
+      "commit": "81ba921dd684a93db41a7e9dda6b6a7c67348a88",
+      "path": "conflicts.jsonl",
+      "url": "https://raw.githubusercontent.com/google-research-datasets/rag_conflicts/81ba921dd684a93db41a7e9dda6b6a7c67348a88/conflicts.jsonl",
+      "bytes": 46717034,
+      "sha256": "14559d5c08fde057d7b46783e3345ee5852d6cf6a750f370dc072a0b957fac54",
+      "license": "Apache-2.0"
+    },
+    "alce": {
+      "name": "ALCE",
+      "paper": "https://arxiv.org/abs/2305.14627",
+      "repository": "https://github.com/princeton-nlp/ALCE",
+      "code_commit": "246c476a4edfc564266b7346b6e29ef4861ae937",
+      "dataset_repository": "https://huggingface.co/datasets/princeton-nlp/ALCE-data",
+      "dataset_commit": "334fa2e7dd32040c3fef931a123c4be1a81e91a0",
+      "path": "ALCE-data.tar",
+      "url": "https://huggingface.co/datasets/princeton-nlp/ALCE-data/resolve/334fa2e7dd32040c3fef931a123c4be1a81e91a0/ALCE-data.tar",
+      "bytes": 451297280,
+      "sha256": "eda837bf659a91b3648dc6e7ab6b17197664d93593857e8fdf3800b6aa6a98f0",
+      "evaluation_file": {
+        "path": "ALCE-data/qampari_eval_gtr_top100_reranked_oracle.json",
+        "bytes": 8434999,
+        "sha256": "88f618efefe448779126ef2fa1d28c50bb12eb4e841951c85a9b3e3c6b5ac092",
+        "items": 1000,
+        "documents_per_item": 5
+      },
+      "code_license": "MIT",
+      "dataset_license": "not declared by the Hugging Face dataset repository"
+    }
+  }
+}

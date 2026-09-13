@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["conflict_type", "answer", "evidence_source_ids", "reason"],
+  "properties": {
+    "conflict_type": {
+      "type": "string",
+      "enum": [
+        "No conflict",
+        "Complementary information",
+        "Conflicting opinions and research outcomes",
+        "Conflict due to outdated information",
+        "Conflict due to misinformation"
+      ]
+    },
+    "answer": { "type": "string" },
+    "evidence_source_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "reason": { "type": "string" }
+  }
+}
