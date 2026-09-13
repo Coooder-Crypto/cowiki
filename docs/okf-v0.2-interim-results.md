@@ -37,7 +37,42 @@
 
 ## 1. 实验设计
 
-### 1.1 研究假设
+### 1.1 参考 benchmark：CONFLICTS
+
+本实验的主 benchmark 是 Cattan 等人在 2025 年提出的
+[`CONFLICTS`](https://arxiv.org/abs/2506.08500)。原论文研究检索增强生成（RAG）场景中的知识冲突，
+给出冲突类型 taxonomy、符合真实检索形态的多来源问答数据，以及专家标注。实验数据取自
+[`google-research-datasets/rag_conflicts`](https://github.com/google-research-datasets/rag_conflicts)
+官方仓库，并锁定到固定 commit 和文件哈希；因此这里的“参考”不是只借用评价思路，而是直接在
+CONFLICTS 的公开题目和检索文档上进行受控实验。
+
+选择 CONFLICTS，而不是自行构造题库，主要基于以下对应关系：
+
+| CONFLICTS 提供的条件 | 对本实验的价值 |
+| --- | --- |
+| 每题包含一个 query 和多篇已冻结的检索 passage | 可以固定证据内容，只改变 metadata 的表达方式 |
+| 专家标注的五类 `conflict_type` | 可以用 exact-label 确定性评分，避免把 LLM judge 引入主指标 |
+| passage 附带 title、URL，部分附带 date | 可以映射为 OKF `sources` 的 `title`、`resource`、`last_modified` |
+| 458 个公开 item | 可以在固定全集上做 item-level P/S 配对分析，而非挑选有利样例 |
+| 数据集是静态 release | 不受在线检索排序、网页更新和搜索个性化的漂移影响 |
+
+但本实验**不是 CONFLICTS 原论文实验的完整复现**。两者的继承与新增关系如下：
+
+| 实验要素 | 来源 |
+| --- | --- |
+| question、retrieved passages、文档顺序、五类 gold label | 直接继承 CONFLICTS release |
+| title、URL、date | 继承 CONFLICTS，并通过确定性规则映射为 canonical metadata |
+| P（prose）与 S（OKF frontmatter）两种表示 | 本研究新增的干预变量 |
+| 等值校验、arm 顺序随机化、JSON Schema 输出约束 | 本研究新增的控制条件 |
+| `Δ = correct_S − correct_P`、`−5pp` 非劣界值、配对 bootstrap | 本研究预注册的统计协议 |
+| 原论文中的生成质量与冲突应对评价 | 不作为本报告的主结果 |
+
+因此，这个实验可以回答的是：在 CONFLICTS 的多来源冲突分类任务上，OKF 结构化来源 metadata 相对
+等价 prose 是否造成可检测的性能损失。它不能单独证明 OKF v0.2 的整体优越性，也不能直接测量
+`verified`、`status`、`stale_after` 等 CONFLICTS 没有 gold truth 的字段。ALCE 等引用 benchmark
+被保留为后续 provenance/citation 轨道，不与本报告的 CONFLICTS 主实验混算。
+
+### 1.2 研究假设
 
 主 estimand 是每个题目上 S 与 P 正确性的配对差：
 
@@ -63,7 +98,7 @@ H1: Δ > −5pp
 使用 100,000 次重采样，随机种子为 `okf-conflicts-ni-bootstrap-v1`，单侧 `α = 0.025`。若区间
 下界高于 0，只能作为次要优效解释；主目标仍是非劣效。
 
-### 1.2 实验单位与样本量
+### 1.3 实验单位与样本量
 
 - 实验单位：CONFLICTS 中的独立问题 item；
 - 总体：锁定 release 中全部 458 个 item，不做结果后排除；
@@ -77,7 +112,7 @@ H1: Δ > −5pp
 discordance 为 10%、15%、20%，458 题对 `−5pp` 界值的功效约为 92%、79%、67%。所以即使
 跑完全量也可能“不足以建立非劣”，不能事后放宽界值。
 
-### 1.3 变量定义
+### 1.4 变量定义
 
 | 类型 | 内容 |
 | --- | --- |
@@ -88,7 +123,7 @@ discordance 为 10%、15%、20%，458 题对 `−5pp` 界值的功效约为 92%�
 | 明确不操纵 | `verified`、`status`、`stale_after`、来源权威性、事实正确性、gold label |
 | 不进入主实验 | `N`（无 metadata）和 `PS`（两种通道都有），仅供后续消融/部署研究 |
 
-### 1.4 为什么使用配对设计
+### 1.5 为什么使用配对设计
 
 CONFLICTS 题目难度差异很大。同一题分别运行 P 和 S，再计算题内差值，可以消除共同难度噪声。如果
 把两臂当成互不相关样本，会浪费“双方在同一题共同正确或共同错误”的信息，并给出不适合本设计的
