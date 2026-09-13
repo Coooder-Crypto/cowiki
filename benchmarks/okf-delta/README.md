@@ -118,6 +118,14 @@ node src/external-cli.mjs run \
   --out runs/conflicts-fair-confirmatory-v1.jsonl
 ```
 
+The first run stopped after 223 of 458 complete P/S pairs. Its experimental
+design, data preparation, execution settings, descriptive results, and evidence
+limitations are documented in
+[`docs/okf-v0.2-interim-results.md`](../../docs/okf-v0.2-interim-results.md).
+The retained aggregate can rebuild the figures with `npm run figures:interim`,
+but the raw JSONL was lost with a temporary worktree and the snapshot is not a
+confirmatory result.
+
 Do not add sampling, change arms, model, repetitions, document count, or seed
 on this command. The runner rejects those deviations and binds every row to the
 frozen preregistration digest.
