@@ -1,5 +1,7 @@
 # CoWiki Agent Policy: routing and SFT lab
 
+Start here on the Windows training machine: [训练交接与学习计划](TRAINING_HANDOFF.md).
+
 The offline SFT workflow below extends the recovered v0.1 fixture experiment.
 The data checks, exporter, evaluator, loss-mask helpers and regression tests run
 without third-party dependencies. The optional model and training paths require
@@ -66,9 +68,9 @@ refuses to present this export as a formal experiment.
 2. In Ubuntu, run `nvidia-smi` and confirm the 4070 Ti is visible. The Windows
    driver provides GPU access; do not install a separate Linux display driver
    inside WSL. See [NVIDIA's WSL guide](https://docs.nvidia.com/cuda/wsl-user-guide/index.html).
-3. Transfer this local branch's source to the machine. It has not been pushed,
-   so a fresh remote clone does not yet include these changes. Keep the working
-   copy and virtual environment in the WSL Linux filesystem.
+3. Check out `feat/restore-agent-policy` from `Coooder-Crypto/cowiki` using the
+   commands in the handoff. Keep the working copy and virtual environment in
+   the WSL Linux filesystem.
 4. Use Python 3.11 or 3.12 with venv support. In the repository root:
 
 ```bash
@@ -230,13 +232,15 @@ Every case references a fixed fixture, declares acceptable actions, and defines
 its verifier before execution. These records are smoke tests, not training or
 benchmark claims.
 
-## Next implementation gate
+## Later real-executor integration (after the SFT lab)
 
-Do not generate thousands of synthetic examples yet. The next gate is to
-replace one fixture route at a time with real adapters:
+For later work on actual task success and cost, replace one fixture route at a
+time with real adapters:
 
 1. execute a read-only CoWiki prefetch against a disposable fixture Space;
 2. execute a background code edit in a disposable fixture repository;
 3. collect real token, latency, diff, test, and review evidence;
 4. repeat each route from a clean snapshot;
-5. only then expand to 60 canonical seeds and add classifier/model baselines.
+5. use independently verified outcomes for cost comparisons or preference data.
+
+This later integration does not block the offline SFT workflow above.
