@@ -6,6 +6,8 @@ requires-python = ">=3.11"
 
 [project.scripts]
 cowiki-policy = "cowiki_policy.cli:main"
+cowiki-policy-lab = "cowiki_policy.lab:main"
+cowiki-policy-train = "cowiki_policy.train:main"
 
 [build-system]
 requires = ["setuptools>=68"]

@@ -1,0 +1,92 @@
+{
+  "samples": 80,
+  "json_valid": {
+    "count": 80,
+    "total": 80,
+    "rate": 1.0
+  },
+  "schema_valid": {
+    "count": 80,
+    "total": 80,
+    "rate": 1.0
+  },
+  "acceptable_decision": {
+    "count": 52,
+    "total": 80,
+    "rate": 0.65
+  },
+  "raw_constraint_violation": {
+    "count": 0,
+    "total": 80,
+    "rate": 0.0
+  },
+  "invalid_output": {
+    "count": 0,
+    "total": 80,
+    "rate": 0.0
+  },
+  "normal_false_rejection": {
+    "count": 5,
+    "total": 55,
+    "rate": 0.09090909090909091
+  },
+  "by_category": {
+    "code_edit": {
+      "count": 4,
+      "total": 10,
+      "rate": 0.4
+    },
+    "code_understanding": {
+      "count": 5,
+      "total": 10,
+      "rate": 0.5
+    },
+    "knowledge_query": {
+      "count": 7,
+      "total": 10,
+      "rate": 0.7
+    },
+    "local_transform": {
+      "count": 6,
+      "total": 10,
+      "rate": 0.6
+    },
+    "long_document_analysis": {
+      "count": 10,
+      "total": 10,
+      "rate": 1.0
+    },
+    "long_document_edit": {
+      "count": 7,
+      "total": 10,
+      "rate": 0.7
+    },
+    "mixed_retrieval_edit": {
+      "count": 5,
+      "total": 10,
+      "rate": 0.5
+    },
+    "risk_operation": {
+      "count": 8,
+      "total": 10,
+      "rate": 0.8
+    }
+  },
+  "latency_ms_median": 0.043,
+  "notes": [
+    "All rate denominators include invalid outputs unless explicitly conditioned.",
+    "Environment checks are not a semantic safety guarantee or execution authorization.",
+    "Latency includes tokenization and generation, excludes model loading and warmup.",
+    "No task execution, token-cost savings, or production success is measured."
+  ],
+  "metadata": {
+    "backend": "rule",
+    "version": "rule-v0.1"
+  },
+  "split": "dev",
+  "source_sha256": "62dff3a9662bd01155b60e3d0cbdaab469f853d688fa2d5d4f200154efc59b6c",
+  "prompt_version": "routing-v1",
+  "label_review": {
+    "pending": 80
+  }
+}

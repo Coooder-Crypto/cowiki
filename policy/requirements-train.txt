@@ -1,0 +1,6 @@
+# Initial compatibility constraints, not a GPU-validated lockfile.
+# Use Python 3.11/3.12; install the appropriate CUDA PyTorch build first.
+torch>=2.6,<3
+transformers==4.57.3
+peft>=0.17,<0.19
+accelerate>=1.4,<2
