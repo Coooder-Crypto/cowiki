@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowiki.dev/schemas/policy-input-v0.1.json",
+  "title": "CoWiki Policy Input v0.1",
+  "type": "object",
+  "required": [
+    "task_id",
+    "task",
+    "agents",
+    "registered_tools",
+    "allowed_modes",
+    "privacy",
+    "budget",
+    "repo_state"
+  ],
+  "properties": {
+    "task_id": {"type": "string", "minLength": 1},
+    "task": {"type": "string", "minLength": 1},
+    "agents": {
+      "type": "object",
+      "required": ["local", "codex", "claude"],
+      "properties": {
+        "local": {"const": "available"},
+        "codex": {"$ref": "#/$defs/readiness"},
+        "claude": {"$ref": "#/$defs/readiness"}
+      },
+      "additionalProperties": false
+    },
+    "registered_tools": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/tool"}
+    },
+    "allowed_modes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"enum": ["live", "background"]}
+    },
+    "privacy": {"enum": ["public", "private", "sensitive"]},
+    "budget": {"enum": ["normal", "low", "exhausted"]},
+    "repo_state": {"enum": ["absent", "clean", "dirty"]}
+  },
+  "$defs": {
+    "readiness": {
+      "enum": ["available", "notInstalled", "broken", "signedOut"]
+    },
+    "tool": {
+      "enum": [
+        "get_space_context",
+        "search_pages",
+        "get_page",
+        "list_backlinks",
+        "list_broken_links"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

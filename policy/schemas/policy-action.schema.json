@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowiki.dev/schemas/policy-action-v0.1.json",
+  "title": "CoWiki Policy Action v0.1",
+  "type": "object",
+  "required": ["intent", "executor", "mode", "initial_tool", "risk_level"],
+  "properties": {
+    "intent": {
+      "enum": [
+        "local_transform",
+        "knowledge_query",
+        "code_understanding",
+        "code_edit",
+        "long_document_analysis",
+        "long_document_edit",
+        "mixed_retrieval_edit",
+        "risk_operation"
+      ]
+    },
+    "executor": {"enum": ["local", "codex", "claude"]},
+    "mode": {"enum": ["live", "background"]},
+    "initial_tool": {
+      "enum": [
+        "none",
+        "get_space_context",
+        "search_pages",
+        "get_page",
+        "list_backlinks",
+        "list_broken_links"
+      ]
+    },
+    "risk_level": {"enum": ["low", "medium", "high"]}
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowiki.dev/schemas/trajectory-v0.1.json",
+  "title": "CoWiki Policy Trajectory v0.1",
+  "type": "object",
+  "required": [
+    "trajectory_id",
+    "created_at",
+    "policy_version",
+    "input",
+    "legal_action_space",
+    "routing",
+    "execution",
+    "verification",
+    "usage"
+  ],
+  "properties": {
+    "trajectory_id": {"type": "string", "minLength": 1},
+    "created_at": {"type": "string", "format": "date-time"},
+    "policy_version": {"type": "string", "minLength": 1},
+    "input": {"type": "object"},
+    "legal_action_space": {"type": "object"},
+    "routing": {
+      "type": "object",
+      "required": ["status", "reasons", "approval_required"],
+      "properties": {
+        "status": {"enum": ["routed", "blocked", "approval_required"]},
+        "action": {
+          "oneOf": [
+            {"$ref": "policy-action.schema.json"},
+            {"type": "null"}
+          ]
+        },
+        "reasons": {"type": "array", "items": {"type": "string"}},
+        "approval_required": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "execution": {"type": ["object", "null"]},
+    "verification": {
+      "type": "object",
+      "required": ["passed", "score", "checks", "failures"],
+      "properties": {
+        "passed": {"type": "boolean"},
+        "score": {"type": "number", "minimum": 0, "maximum": 1},
+        "checks": {"type": "object"},
+        "failures": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "usage": {
+      "type": "object",
+      "required": ["input_tokens", "output_tokens", "wall_time_ms", "normalized_cost"],
+      "properties": {
+        "input_tokens": {"type": "integer", "minimum": 0},
+        "output_tokens": {"type": "integer", "minimum": 0},
+        "wall_time_ms": {"type": "integer", "minimum": 0},
+        "normalized_cost": {"type": "number", "minimum": 0}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
